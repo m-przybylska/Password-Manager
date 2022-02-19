@@ -6,9 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!doctype html>
 <html lang="en">
@@ -48,8 +47,8 @@
           href="${pageContext.request.contextPath}/resources/css/navbar-top-fixed.css"
           rel="stylesheet">
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Fixed navbar</a>
@@ -79,10 +78,31 @@
 
 <main class="container">
     <div class="bg-light p-5 rounded">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it
-            will remain fixed to the top of your browser’s viewport.</p>
-        <a class="btn btn-lg btn-primary" href="../components/navbar/" role="button">View navbar docs &raquo;</a>
+        <h1>Password</h1>
+
+        <!-- Table -->
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Password</th>
+                <th scope="col">Web Page</th>
+                <th scope="col">Login</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <c:forEach var="tmpPass" items="${passwords}">
+            <tr>
+                <td scope="row">${tmpPass.password}</td>
+                <td scope="row">${tmpPass.webPage}</td>
+                <td scope="row">${tmpPass.login}</td>
+                <td scope="row">
+                    <a href="#">View</a>
+                    | <a href="#">Update</a>
+                    | <a href="#">Delete</a>
+                </td>
+            </tr>
+            </c:forEach>
+        </table>
     </div>
 </main>
 
