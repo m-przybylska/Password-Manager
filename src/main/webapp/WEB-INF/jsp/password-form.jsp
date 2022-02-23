@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!doctype html>
@@ -68,10 +68,10 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-            <form:form action="${pageContext.request.contextPath}/web/app/password/search" method="post" class="d-flex">
-                <input class="form-control me-2" type="search" name="searchText" placeholder="Search" aria-label="Search">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
-            </form:form>
+            </form>
         </div>
     </div>
 </nav>
@@ -79,37 +79,30 @@
 <main class="container">
     <div class="bg-light p-5 rounded">
         <h1>Password</h1>
-        <input type="button" value="Add button" class="btn btn-dark"
-               onclick="window.location.href = 'add'; return false;"/>
-        <!-- Table -->
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Password</th>
-                <th scope="col">Web Page</th>
-                <th scope="col">Login</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <c:forEach var="tmpPass" items="${passwords}">
-                <c:url var="update" value="/web/app/password/update">
-                    <c:param name="passwordId" value="${tmpPass.id}"/>
-                </c:url>
-                <c:url var="delete" value="/web/app/password/delete">
-                    <c:param name="passwordId" value="${tmpPass.id}"/>
-                </c:url>
+
+        <form:form action="save" modelAttribute="pass" method="post">
+            <form:hidden path="id" />
+            <table>
+                <tbody>
                 <tr>
-                    <td scope="row">${tmpPass.password}</td>
-                    <td scope="row">${tmpPass.webPage}</td>
-                    <td scope="row">${tmpPass.login}</td>
-                    <td scope="row">
-                        <a href="#">View</a>
-                        | <a href="${update}">Update</a>
-                        | <a href="${delete}" onclick="if(!(confirm('Are you sure you want to delete given password?'))) return false">Delete</a>
-                    </td>
+                    <td><label>Web Page:</label></td>
+                    <td><form:input path="webPage" cssClass="w-600 mb-1 form-control" /></td>
                 </tr>
-            </c:forEach>
-        </table>
+                <tr>
+                    <td><label>Login:</label></td>
+                    <td><form:input path="login" cssClass="w-600 mb-1 form-control" /></td>
+                </tr>
+                <tr>
+                    <td><label>Password:</label></td>
+                    <td><form:password path="password" cssClass="w-600 mb-1 form-control" /></td>
+                </tr>
+                <tr>
+                    <td><label>Submit:</label></td>
+                    <td><input type="submit" value="Save" class="btn btn-dark mb-3"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form:form>
     </div>
 </main>
 
