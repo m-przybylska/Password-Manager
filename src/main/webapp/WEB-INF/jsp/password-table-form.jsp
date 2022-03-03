@@ -61,16 +61,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
             </ul>
             <form:form action="${pageContext.request.contextPath}/web/app/password/search" method="post" class="d-flex">
                 <input class="form-control me-2" type="search" name="searchText" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
+            </form:form>
+
+            <form:form action="${pageContext.request.contextPath}/logout" method="post">
+                <button class = "btn-dark" type="submit">Logout</button>
             </form:form>
         </div>
     </div>
