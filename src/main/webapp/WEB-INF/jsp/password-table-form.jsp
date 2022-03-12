@@ -90,6 +90,9 @@
             </tr>
             </thead>
             <c:forEach var="tmpPass" items="${passwords}">
+                <c:url var="view" value="/web/app/password/view">
+                    <c:param name="passwordId" value="${tmpPass.id}"/>
+                </c:url>
                 <c:url var="update" value="/web/app/password/update">
                     <c:param name="passwordId" value="${tmpPass.id}"/>
                 </c:url>
@@ -101,7 +104,7 @@
                     <td scope="row">${tmpPass.webPage}</td>
                     <td scope="row">${tmpPass.login}</td>
                     <td scope="row">
-                        <a href="#">View</a>
+                        | <a href="${view}">View</a>
                         | <a href="${update}">Update</a>
                         | <a href="${delete}" onclick="if(!(confirm('Are you sure you want to delete given password?'))) return false">Delete</a>
                     </td>

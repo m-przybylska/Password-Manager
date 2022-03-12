@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/web/app/password")
 @RequiredArgsConstructor
@@ -46,10 +48,15 @@ public class PasswordController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("pass") Password password) {
+    public String save(@ModelAttribute("pass") Password password) throws Exception {
         passwordService.save(password);
         return "redirect:/web/app/password/table";
     }
 
-
+    @GetMapping("/view")
+    public String showPasswordFormPageForView(@RequestParam("passwordId") Integer id, Model model) {
+        model.addAttribute("passwords", passwordService.findAllWithDecrypted(
+                passwordService.findById(id).orElseThrow()));
+        return "password-table-form";
+    }
 }
