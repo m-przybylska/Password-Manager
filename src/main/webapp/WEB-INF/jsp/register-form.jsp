@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
@@ -52,40 +52,19 @@
 
 <body class="text-center">
 <main class="form-signin">
-    <form:form action="${pageContext.request.contextPath}/authenticateUser" method="post">
-        <c:if test="${param.registered != null}">
-            <div class="form-group">
-                <div class="col-xs-15">
-                    <div>
-                        <div class="alert alert-success col-xs-offset-1 col-xs-10">
-                            You have been registered.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </c:if>
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <form:form action="${pageContext.request.contextPath}/web/login/register" modelAttribute="usr" method="post">
+        <h1 class="h3 mb-3 fw-normal">Register</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
+            <form:input class="form-control" id="floatingInput" path="login" placeholder="name@example.com"/>
             <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+            <form:password class="form-control" id="floatingPassword" path="password" placeholder="Password"/>
             <label for="floatingPassword">Password</label>
         </div>
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    </form:form>
-
-    <form:form action="${pageContext.request.contextPath}/web/login/register-page" method="get">
         <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
     </form:form>
 </main>
 </body>
