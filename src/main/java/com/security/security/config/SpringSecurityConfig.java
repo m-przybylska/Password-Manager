@@ -20,7 +20,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser(user.username("admin").password("admin123").roles("ADMIN"))
 //                .withUser(user.username("client").password("client123").roles("ADMIN"));
 //    }
-
+//
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new MessageDigestPasswordEncoder("SHA-512");
